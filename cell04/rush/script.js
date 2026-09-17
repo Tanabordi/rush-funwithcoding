@@ -1,13 +1,18 @@
 $(document).ready(function() {
-    $('a.nav-link').on('click', function(event) {
-        if (this.hash !== "") {
-            event.preventDefault();
-            var hash = this.hash;
-            $('html, body').animate({
-                scrollTop: $(hash).offset().top - 60
-            }, 800, function(){
-                window.location.hash = hash;
-            });
-        }
-    });
+    $('section .container').addClass('fade-element');
+
+    function checkScroll() {
+        var windowHeight = $(window).height();
+        var scrollPos = $(window).scrollTop();
+
+        $('.fade-element').each(function() {
+            var elementPos = $(this).offset().top;
+            if (scrollPos + windowHeight > elementPos + 100) {
+                $(this).addClass('visible');
+            }
+        });
+    }
+
+    $(window).on('scroll', checkScroll);
+    checkScroll();
 });

@@ -1,13 +1,25 @@
+﻿html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 75px;
+}
+
 body {
     font-family: Arial, sans-serif;
-    padding-top: 70px;
+    padding-top: 75px;
     background-color: #f8f9fa;
 }
 
+.custom-bg {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), url('image-taboonp/bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
 section {
-    min-height: 80vh;
-    padding-top: 50px;
-    padding-bottom: 50px;
+    min-height: 50vh;
+    padding-top: 30px;
+    padding-bottom: 30px;
 }
 
 .profile-img {
@@ -28,4 +40,60 @@ section {
 .home-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.icon-hover {
+    transition: transform 0.2s ease-in-out;
+}
+
+.icon-hover:hover {
+    transform: scale(1.2);
+}
+
+/* Custom Pink Theme */
+.bg-pink {
+    background: linear-gradient(135deg, #ff7eb3 0%, #ff758c 100%) !important;
+}
+
+.text-pink {
+    color: #ff758c !important;
+}
+
+.border-pink {
+    border-color: #ff758c !important;
+}
+
+/* Make navbar links look better on the pink gradient */
+.navbar-dark .navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
+    transition: all 0.3s ease;
+    padding: 8px 16px !important;
+    margin: 0 5px;
+    border: 1px solid transparent;
+    border-radius: 8px; /* ขอบมน */
+}
+
+.navbar-dark .navbar-nav .nav-link:hover, 
+.navbar-dark .navbar-nav .nav-link.active {
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.2); /* พื้นหลังโปร่งแสง */
+    border-color: rgba(255, 255, 255, 0.6); /* กรอบสีขาวโปร่งแสง */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid transparent;
+}
+
+.navbar-brand:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.6);
+    color: #ffffff !important;
 }

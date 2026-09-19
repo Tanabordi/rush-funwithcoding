@@ -1,101 +1,22 @@
-﻿<!DOCTYPE html>
-<!-- ============================================================================
-     tanboonp.html  |  Rush - Fun With Coding  |  42Bangkok
-     ผู้จัดทำ : phuwprak, tanboonp
-
-     หน้าที่ของไฟล์นี้ :
-       หน้าแฟ้มสะสมผลงานรายบุคคลของ tanboonp (ธนบดี บุญภมร)
-       ออกแบบแบบ One-page scrolling คือเนื้อหาทั้งหมดอยู่ในหน้าเดียว
-       แบ่งเป็น 3 section แล้วใช้ Navbar แบบตรึงด้านบนพาเลื่อนไปยังแต่ละหัวข้อ
-
-     โครงสร้างของหน้า :
-       nav                  แถบเมนูตรึงด้านบน + ปุ่มกลับหน้าแรก
-       section #about       ประวัติส่วนตัว + ช่องทางการติดต่อ   (สีชมพู)
-       section #education   การศึกษา                          (สีแดง)
-       section #showcase    ความเชี่ยวชาญ + ผลงาน              (สีเขียว / น้ำเงิน)
-
-     ไฟล์ที่เกี่ยวข้อง :
-       index.html   หน้าแรก (ปลายทางของปุ่ม "กลับหน้าแรก")
-       style.css    สไตล์ที่เขียนเอง
-       script.js    เอฟเฟกต์ fade-in ตอนเลื่อนหน้าจอ
-
-     หมายเหตุ : ไฟล์นี้กับ phuwprak.html ใช้โครงสร้าง HTML ชุดเดียวกันทั้งหมด
-                ต่างกันเพียงข้อมูลส่วนตัว รูปภาพ และการจัดวางโลโก้ในหัวข้อความเชี่ยวชาญ
-     ============================================================================ -->
-
+<!DOCTYPE html>
 <html lang="th">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>แฟ้มสะสมผลงาน - tanboonp</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap Icons : ชุดฟอนต์ไอคอน ทำให้แทรกไอคอนด้วยแท็ก <i class="bi bi-ชื่อ">
-         ได้โดยไม่ต้องใช้ไฟล์รูป ไอคอนจึงคมชัดทุกความละเอียดและเปลี่ยนสีได้ด้วย CSS
-         หน้า index.html ไม่ต้องโหลดไฟล์นี้เพราะไม่มีการใช้ไอคอนเลย
-
-         ไอคอนที่ใช้ในหน้านี้ :
-           bi-person-lines-fill  หัวข้อ "เกี่ยวกับฉัน"
-           bi-chat-dots-fill     หัวข้อ "ช่องทางการติดต่อ"
-           bi-line / bi-instagram / bi-facebook   ไอคอนโซเชียล 3 ช่องทาง
-           bi-mortarboard-fill   หมวกบัณฑิต หัวข้อ "การศึกษา"
-           bi-building           อาคาร ประกอบชื่อสถาบัน
-           bi-laptop             หัวข้อ "ความเชี่ยวชาญ"
-           bi-trophy-fill        ถ้วยรางวัล หัวข้อ "ผลงาน / กิจกรรม" -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
 </head>
-<!-- แอตทริบิวต์ที่ขึ้นต้นด้วย data-bs- คือวิธีสั่งงานคอมโพเนนต์ Bootstrap
-     โดยไม่ต้องเขียน JavaScript เอง ไฟล์ bootstrap.bundle.min.js
-     จะสแกนหาแอตทริบิวต์เหล่านี้แล้วเปิดใช้งานฟีเจอร์ให้อัตโนมัติ
-
-     data-bs-spy="scroll"     เปิดใช้งาน Scrollspy = ระบบเฝ้าดูว่าผู้ใช้อ่านอยู่ section ไหน
-     data-bs-target="#navbar" ให้ไปไฮไลต์เมนูในองค์ประกอบที่มี id="navbar"
-                              เมื่อเลื่อนถึง section ใด ลิงก์ที่ชี้ไป section นั้น
-                              จะได้คลาส .active โดยอัตโนมัติ
-     data-bs-offset="75"      ชดเชย 75px ซึ่งเท่ากับความสูงของ Navbar ที่ตรึงอยู่ด้านบน
-                              เพื่อให้จังหวะไฮไลต์ตรงกับสายตาผู้ใช้จริง
-
-     เลข 75 ปรากฏ 3 ที่ และต้องตรงกันเสมอ :
-       1. data-bs-offset="75" ตรงนี้                 จังหวะไฮไลต์เมนูของ Scrollspy
-       2. body { padding-top: 75px } ใน style.css    กัน Navbar ทับเนื้อหาบรรทัดแรก
-       3. html { scroll-padding-top: 75px } ใน CSS   กดเมนูแล้วหยุดต่ำลง 75px
-                                                     หัวข้อจะได้ไม่ถูก Navbar บัง
-     ถ้าแก้ความสูงของ Navbar ต้องแก้ทั้งสามจุดพร้อมกัน -->
 <body class="custom-bg" data-bs-spy="scroll" data-bs-target="#navbar" data-bs-offset="75">
 
-    <!-- ===== แถบนำทาง (Navbar) แบบตรึงด้านบน =====
-         id="navbar"          เป้าหมายที่ Scrollspy ใช้อ้างอิง (ตรงกับ data-bs-target)
-         navbar-expand-lg     จุดเปลี่ยนของ Responsive :
-                                จอ lg ขึ้นไป (>= 992px) กางเมนูออกเป็นแถวแนวนอน
-                                จอเล็กกว่านั้น          ยุบเมนูเก็บไว้หลังปุ่มแฮมเบอร์เกอร์
-         navbar-dark          บอก Bootstrap ว่าพื้นหลังเข้ม ให้ใช้ตัวอักษรและไอคอนสีอ่อน
-         bg-pink              คลาสที่นิยามเอง พื้นไล่เฉดชมพู
-         fixed-top            ตรึงแถบไว้บนสุดตลอดเวลา
-                              คลาสนี้เองที่ทำให้ต้องมี padding-top: 75px ใน CSS ชดเชย -->
     <nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-pink fixed-top shadow">
         <div class="container">
-            <!-- navbar-brand ปกติใช้วางโลโก้หรือชื่อแบรนด์
-                 ที่นี่ถูกใช้เป็นปุ่มย้อนกลับไปหน้าแรก
-                 ทำให้ผู้ใช้กลับสู่หน้าสารบัญได้จากทุกตำแหน่งของหน้า -->
             <a class="navbar-brand fw-bold" href="index.html">กลับหน้าแรก</a>
-            <!-- ปุ่มแฮมเบอร์เกอร์ แสดงเฉพาะจอที่เล็กกว่า lg
-                 data-bs-toggle="collapse" + data-bs-target="#navbarNav"
-                 = เมื่อกดให้สั่งกล่องที่มี id="navbarNav" ยืด/ยุบ
-                 ด้วยคอมโพเนนต์ Collapse ของ Bootstrap (ไม่ต้องเขียน JavaScript เอง) -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <!-- กล่องที่ถูกยุบ/กางโดยปุ่มด้านบน ภายในบรรจุรายการเมนู -->
             <div class="collapse navbar-collapse" id="navbarNav">
-                <!-- ms-auto = margin-start: auto ดันรายการเมนูทั้งชุดไปชิดขวาสุด
-                     แยกจากปุ่ม "กลับหน้าแรก" ที่อยู่ทางซ้าย
-
-                     href="#about" = Anchor link ลิงก์ที่ชี้ไปยัง id ภายในหน้าเดียวกัน
-                     กดแล้วจะเลื่อนไปยัง section นั้นอย่างนุ่มนวล
-                     เพราะ style.css ตั้ง scroll-behavior: smooth ไว้
-
-                     ลิงก์แรกใส่คลาส active ไว้ตั้งแต่ต้น เพื่อให้ตอนเปิดหน้าใหม่มีเมนูไฮไลต์อยู่แล้ว
-                     หลังจากนั้น Scrollspy จะย้ายคลาสนี้ไปมาตามการเลื่อนของผู้ใช้ -->
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link active" href="#about">ประวัติส่วนตัว</a></li>
                     <li class="nav-item"><a class="nav-link" href="#education">การศึกษา</a></li>
@@ -105,44 +26,18 @@
         </div>
     </nav>
 
-    <!-- ============================================================================
-         SECTION ที่ 1 : ประวัติส่วนตัว
-         ส่วนนี้มีลูกเล่นการจัดวางที่น่าสนใจที่สุดในเว็บ คือรูปโปรไฟล์ซ้อนอยู่หลังการ์ด
-         ทำให้ดูเหมือนคนในรูปโผล่ขึ้นมาจากด้านหลังการ์ดข้อมูล
-
-         col-md-8 = คอลัมน์กว้าง 8/12 (ราว 67%) บนจอ md ขึ้นไป
-                    กว้างพอให้อ่านสบายแต่ไม่กว้างจนบรรทัดยาวเกินไป
-         ============================================================================ -->
     <section id="about">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-8 text-center">
 
-                    <!-- เทคนิคซ้อนรูปกับการ์ด (ทำงานคู่กับ inline style ของ card ด้านล่าง) :
-                           margin-bottom: -60px  หัวใจของเทคนิค margin ค่าติดลบทำให้องค์ประกอบถัดไป
-                                                 (การ์ด) ถูกดึงขึ้นมาทับรูป 60px
-                           position: relative    ต้องใส่ เพราะ z-index จะมีผลก็ต่อเมื่อองค์ประกอบนั้น
-                                                 ไม่ได้อยู่ในสถานะ position: static ซึ่งเป็นค่าเริ่มต้น
-                           z-index: 0            รูปอยู่ชั้นหลัง
-                           max-height: 450px     จำกัดความสูงไม่ให้ใหญ่เกินสัดส่วนของหน้า -->
                     <img src="image-taboonp/Picture (17).png" alt="รูปโปรไฟล์" class="img-fluid" style="max-height: 450px; margin-bottom: -60px; position: relative; z-index: 0;">
 
-                    <!-- z-index: 2 = การ์ดอยู่ชั้นหน้า จึงทับรูป ไม่ใช่ถูกรูปบัง
-                         ถ้าสลับค่า z-index กัน ภาพจะบังข้อความจนอ่านไม่ได้ -->
                     <div class="card shadow border-0 border-top border-pink border-4 mx-auto" style="position: relative; z-index: 2;">
                         <div class="card-body p-4 p-md-5">
 
                             <h3 class="text-pink fw-bold mb-4"><i class="bi bi-person-lines-fill me-2"></i>เกี่ยวกับฉัน</h3>
 
-                            <!-- list-unstyled  ลบจุด bullet และ padding ซ้ายของ ul ออก
-                                                ทำให้ดูเหมือนรายการข้อมูล แต่ยังคงใช้แท็ก ul/li
-                                                ซึ่งถูกต้องตามความหมายเชิงโครงสร้าง
-                                 fs-5           font-size ระดับ 5 (เท่าขนาด h5) ทำให้อ่านง่ายขึ้น
-                                 line-height: 2.2
-                                                เพิ่มระยะห่างระหว่างบรรทัดเป็น 2.2 เท่าของขนาดตัวอักษร
-                                                สำคัญเป็นพิเศษกับภาษาไทย เพราะสระบนและวรรณยุกต์
-                                                ต้องการพื้นที่แนวตั้งมากกว่าอักษรละติน
-                                                ถ้าตั้งไว้แคบ สระอิ สระอี และไม้โท จะเบียดชนบรรทัดบน -->
                             <ul class="list-unstyled fs-5" style="line-height: 2.2;">
                                 <li><b>ชื่อ - นามสกุล :</b> นายธนบดี บุญภมร</li>
                                 <li><b>ชื่อภาษาอังกฤษ :</b> Tanabordi Boonpamorn</li>
@@ -152,29 +47,10 @@
                                 <li><b>กีฬาที่ชอบ :</b> Formula 1, บาสเกตบอล, ฟุตบอล</li>
                             </ul>
 
-                            <!-- เส้นคั่น : หนา 2 หน่วย สีชมพู กว้างแค่ 50% ของกล่อง (w-50)
-                                 และจัดกึ่งกลางด้วย mx-auto
-                                 เส้นสั้นตรงกลางดูนุ่มนวลกว่าเส้นเต็มความกว้าง -->
                             <hr class="my-4 border-2 border-pink w-50 mx-auto">
                             <h4 class="text-pink fw-bold mb-4"><i class="bi bi-chat-dots-fill me-2"></i>ช่องทางการติดต่อ</h4>
 
-                            <!-- แถวไอคอนโซเชียล จัดด้วย Flexbox :
-                                   d-flex                  เปลี่ยนกล่องเป็น Flexbox ไอคอนจึงเรียงแนวนอน
-                                   justify-content-center  จัดไอคอนทั้งชุดให้อยู่กึ่งกลาง
-                                   gap-4                   เว้นช่องไฟระหว่างไอคอน 1.5rem
-                                                           วิธีสมัยใหม่ที่สะอาดกว่าการไล่ใส่ margin ทีละตัว -->
                             <div class="d-flex justify-content-center gap-4">
-                                <!-- แต่ละลิงก์ :
-                                       fs-1            ขนาดตัวอักษรใหญ่สุด ไอคอน (ซึ่งเป็นฟอนต์) จึงใหญ่ กดง่ายบนมือถือ
-                                       icon-hover      คลาสที่นิยามเอง เมื่อชี้เมาส์ ไอคอนจะขยายเป็น 1.2 เท่า
-                                       title="LINE"    ข้อความ tooltip ที่โผล่เมื่อชี้เมาส์ค้างไว้
-                                       color: #00C300  สีเขียวประจำแบรนด์ LINE ซึ่ง Bootstrap ไม่มีให้
-                                                       จึงต้องระบุเป็น inline style
-                                                       ส่วน Instagram ใช้ text-danger และ Facebook ใช้ text-pink
-
-                                     ข้อควรปรับปรุง : ลิงก์ทั้ง 3 ตัวนี้ยังไม่ได้ใส่ target="_blank"
-                                     จึงเปิดทับหน้าเดิม ทำให้ผู้ใช้หลุดออกจากเว็บแฟ้มสะสมผลงาน
-                                     (หน้า phuwprak.html ใส่ไว้ครบทั้ง 3 ลิงก์) -->
                                 <a href="https://line.me/ti/p/x7VcVxl28H" style="color: #00C300;" class="fs-1 icon-hover" title="LINE"><i class="bi bi-line"></i></a>
                                 <a href="https://www.instagram.com/tanabordiii_/" class="text-danger fs-1 icon-hover" title="Instagram"><i class="bi bi-instagram"></i></a>
                                 <a href="https://www.facebook.com/profile.php?id=61578893680114" class="text-pink fs-1 icon-hover" title="Facebook"><i class="bi bi-facebook"></i></a>
@@ -188,16 +64,6 @@
         </div>
     </section>
 
-    <!-- ============================================================================
-         SECTION ที่ 2 : การศึกษา
-         โครงสร้างเรียบง่ายกว่า section แรกมาก เป็นการ์ดใบเดียวจัดกึ่งกลาง
-
-         สังเกต : เปลี่ยนสีประจำหัวข้อเป็นสีแดง (border-danger / text-danger)
-         เป็นการใช้สีเพื่อแยกหัวข้อ ให้ผู้ใช้รู้ทันทีว่ากำลังอ่านส่วนใหม่
-           ชมพู = ประวัติ | แดง = การศึกษา | เขียว = ทักษะ | น้ำเงิน = ผลงาน
-
-         เนื้อหา section นี้เหมือนกันทั้ง 2 คน เพราะเรียนคณะและสาขาเดียวกัน
-         ============================================================================ -->
     <section id="education">
         <div class="container">
             <div class="row justify-content-center">
@@ -208,7 +74,6 @@
                             
                             <h3 class="text-danger fw-bold mb-5"><i class="bi bi-mortarboard-fill me-2"></i>การศึกษา</h3>
 
-                            <!-- โลโก้คณะ ดึงจากโฟลเดอร์ image-taboonp เพราะเป็นรูปที่ใช้ร่วมกันทั้งสองหน้า -->
                             <img src="image-taboonp/siet-logo.png" alt="โลโก้คณะ" class="img-fluid mb-4" style="max-height: 70px;">
                             
                             <h3 class="text-dark fw-bold mb-2">คณะครุศาสตร์อุตสาหกรรมและเทคโนโลยี</h3>
@@ -216,13 +81,6 @@
                             
                             <hr class="w-25 mx-auto mb-4 border-2 border-danger">
                             
-                            <!-- ลำดับชั้นของข้อมูลชัดเจน : โลโก้ > ชื่อคณะ (h3 ตัวหนาสีเข้ม)
-                                 > สาขา (h5 สีเทา text-muted) > เส้นคั่น > ชื่อสถาบัน
-
-                                 บรรทัดชื่อสถาบันใช้ Flexbox : d-flex align-items-center gap-2
-                                 ทำให้ไอคอนอาคารกับข้อความอยู่กึ่งกลางแนวตั้งตรงกันพอดี
-                                 ซึ่งทำได้ยากกว่าถ้าวางไอคอนแบบ inline
-                                 โดยเฉพาะเมื่อข้อความไทยมีความสูงบรรทัดไม่เท่าไอคอน -->
                             <div class="d-flex align-items-center justify-content-center gap-2 text-danger fs-5 fw-bold">
                                 <i class="bi bi-building"></i>
                                 <span>สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง</span>
@@ -235,44 +93,23 @@
         </div>
     </section>
 
-    <!-- ============================================================================
-         SECTION ที่ 3 : ความเชี่ยวชาญ / ผลงาน
-         วางการ์ด 2 ใบเรียงข้างกัน : ใบซ้าย = ทักษะ (เขียว)  ใบขวา = ผลงาน (น้ำเงิน)
-         เป็นส่วนที่โค้ดของสองคนต่างกันมากที่สุด
-         ============================================================================ -->
     <section id="showcase">
         <div class="container">
             <div class="row justify-content-center">
 
-                <!-- col-md-6 = กว้างครึ่งหนึ่ง (6/12) บนจอ md ขึ้นไป
-                     การ์ด 2 ใบจึงเรียงข้างกันพอดีเต็มแถว ส่วนบนมือถือจะซ้อนลงมาทีละใบ -->
                 <div class="col-md-6 mb-4">
-                    <!-- h-100 = height: 100% รายละเอียดเล็กแต่สำคัญ
-                         บังคับให้การ์ดสูงเท่ากับความสูงของแถว
-                         ผลคือการ์ดสองใบสูงเท่ากันเสมอ แม้เนื้อหาข้างในจะยาวไม่เท่ากัน
-                         ถ้าไม่ใส่ การ์ดจะสูงต่างกันจนขอบล่างไม่ตรงและดูไม่เรียบร้อย -->
                     <div class="card h-100 shadow border-0 border-top border-success border-4">
                         <div class="card-body p-4 p-md-5 text-center">
                             <h4 class="text-success fw-bold mb-4"><i class="bi bi-laptop me-2"></i>ความเชี่ยวชาญ</h4>
                             
-                            <!-- Nested grid : สร้างระบบตาราง 12 คอลัมน์ "ชุดใหม่" ภายในการ์ด
-                                 ทำให้จัดโลโก้ภาษาเป็นตารางย่อยได้ เป็นความสามารถมาตรฐานของ Bootstrap Grid -->
                             <div class="row mt-5">
                                 
-                                <!-- การจัดวางโลโก้ของหน้านี้ต่างจาก phuwprak.html :
-                                       phuwprak  ตาราง 2 x 2 ทุกอันใช้ col-6 สูง 100px เท่ากันหมด (4 ภาษา)
-                                       tanboonp  แถวบน Python ใช้ col-12 เต็มแถว สูง 150px และ fs-4
-                                                 แถวล่าง HTML/CSS ใช้ col-6 สูง 130px  (3 ภาษา)
-
-                                     การให้ Python กินเต็มแถวและใหญ่กว่า เป็นการใช้ขนาดสื่อลำดับความถนัด
-                                     ทำให้สายตาจับที่ Python เป็นอันดับแรก -->
                                 <div class="col-12 mb-4">
                                     <img src="image-taboonp/python-logo.png" alt="Python" class="img-fluid mb-3" style="height: 150px;">
                                     <p class="fw-bold text-secondary fs-4">Python</p>
                                 </div>
                                 
                                 
-                                <!-- แถวล่าง : HTML และ CSS อย่างละครึ่งแถว (col-6) สูง 130px เท่ากัน -->
                                 <div class="col-6">
                                     <img src="image-taboonp/html-logo.png" alt="HTML" class="img-fluid mb-3" style="height: 130px;">
                                     <p class="fw-bold text-secondary fs-5">HTML</p>
@@ -286,18 +123,11 @@
                     </div>
                 </div>
 
-                <!-- การ์ดผลงาน / กิจกรรม : โครงสร้างเรียบง่ายที่สุดในหน้า
-                     คือหัวข้อ + รูปภาพหนึ่งใบ
-                     h-100 ในการ์ดใบนี้ทำงานคู่กับใบซ้าย ทำให้ขอบล่างของทั้งสองการ์ดตรงกัน -->
                 <div class="col-md-6 mb-4">
                     <div class="card h-100 shadow border-0 border-top border-primary border-4">
                         <div class="card-body p-4 p-md-5 text-center">
                             <h4 class="text-primary fw-bold mb-4"><i class="bi bi-trophy-fill me-2"></i>ผลงาน / กิจกรรม</h4>
                             <div class="mt-4">
-                                <!-- img-fluid  ทำให้รูปเกียรติบัตรย่อ/ขยายตามความกว้างการ์ดอัตโนมัติ ไม่ล้นกรอบ
-                                                ไม่ได้กำหนดความสูงตายตัว จึงแสดงเต็มสัดส่วนจริงของภาพ
-                                     rounded shadow-sm border
-                                                มุมโค้ง เงาอ่อน และเส้นขอบบาง ทำให้รูปดูเหมือนเอกสารที่ใส่กรอบไว้ -->
                                 <img src="image-taboonp/certificate.png" alt="รูปเกียรติบัตร" class="img-fluid rounded shadow-sm border">
                             </div>
                         </div>
@@ -308,16 +138,6 @@
         </div>
     </section>
 
-    <!-- ===== สคริปต์ท้ายหน้า : ลำดับนี้ห้ามสลับ =====
-         แท็ก script ธรรมดาจะถูกดาวน์โหลดและรันตามลำดับจากบนลงล่าง
-
-           1. jQuery 3.6.0          สร้างตัวแปรส่วนกลาง $ ซึ่ง script.js ต้องใช้
-           2. bootstrap.bundle.js   เปิดใช้งาน Scrollspy และ Collapse
-                                    (Bootstrap 5 ไม่ต้องพึ่ง jQuery แล้ว)
-           3. script.js             โค้ดของเราเอง ต้องอยู่หลังสุดเพราะพึ่งพา jQuery
-
-         ถ้าสลับให้ script.js อยู่บน จะเกิดข้อผิดพลาด
-         Uncaught ReferenceError: $ is not defined และเอฟเฟกต์ fade-in จะหายไปทั้งหน้า -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
